@@ -1,37 +1,41 @@
 import os
-import google.generativeai as genai
+import asyncio
 from typing import Optional
 
+from google import genai
+from google.genai import types
+
 # Global model instance
-model: Optional[genai.GenerativeModel] = None
+client: Optional[genai.Client] = None
+MODEL_NAME = os.environ.get("GEMINI_MODEL", "gemini-3.5-flash-lite")
+MODEL_FALLBACKS = ("gemini-2.5-flash", "gemini-flash-lite-latest")
 
 def setup_gemini():
     """Initialize Gemini API with API key"""
-    global model
+    global client
     
     api_key = os.environ.get("GOOGLE_API_KEY")
     if not api_key:
-        model = None
+        client = None
         print("⚠️ GOOGLE_API_KEY is not set; Gemini generation is disabled")
         return None
     
-    genai.configure(api_key=api_key)
-    model = genai.GenerativeModel('gemini-2.0-flash')
+    client = genai.Client(api_key=api_key)
     
     print("✅ Gemini API initialized successfully")
-    return model
+    return client
 
-def get_model() -> genai.GenerativeModel:
-    """Get the configured Gemini model"""
-    global model
+def get_client() -> genai.Client:
+    """Get the configured Gemini client"""
+    global client
     
-    if model is None:
+    if client is None:
         setup_gemini()
 
-    if model is None:
+    if client is None:
         raise RuntimeError("GOOGLE_API_KEY environment variable not set")
     
-    return model
+    return client
 
 async def generate_with_gemini(
     prompt: str,
@@ -51,20 +55,32 @@ async def generate_with_gemini(
     Returns:
         Generated text response
     """
-    model = get_model()
+    gemini_client = get_client()
     
-    generation_config = {
-        "temperature": temperature,
-        "max_output_tokens": max_tokens,
-        "response_mime_type": response_format
-    }
-    
-    try:
-        response = model.generate_content(
-            prompt,
-            generation_config=generation_config
-        )
-        return response.text
-    except Exception as e:
-        print(f"❌ Gemini API error: {str(e)}")
-        raise
+    models_to_try = (MODEL_NAME,) + tuple(
+        model_name for model_name in MODEL_FALLBACKS if model_name != MODEL_NAME
+    )
+    last_error = None
+
+    for model_name in models_to_try:
+        try:
+            response = await asyncio.to_thread(
+                gemini_client.models.generate_content,
+                model=model_name,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    temperature=temperature,
+                    max_output_tokens=max_tokens,
+                    response_mime_type=response_format,
+                ),
+            )
+            return response.text
+        except Exception as error:
+            last_error = error
+            error_text = str(error)
+            if "503" not in error_text and "UNAVAILABLE" not in error_text and "404" not in error_text:
+                break
+            print(f"⚠️ Gemini model '{model_name}' unavailable; trying fallback")
+
+    print(f"❌ Gemini API error: {str(last_error)}")
+    raise last_error

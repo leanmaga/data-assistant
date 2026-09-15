@@ -56,7 +56,7 @@ export default function Sidebar() {
 
       <div className="p-4 border-t border-gray-200">
         <p className="text-xs text-gray-500 text-center">
-          Powered by Gemini 2.0 Flash
+          Powered by Gemini 3.5 Flash Lite
         </p>
       </div>
     </aside>

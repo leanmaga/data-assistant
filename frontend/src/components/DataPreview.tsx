@@ -6,7 +6,7 @@ import { Download, Send } from "lucide-react";
 import { exportDataAsZip, modifyTableData } from "@/lib/api";
 
 export default function DataPreview() {
-  const { generatedData, selectedTable, setSelectedTable, setGeneratedData } =
+  const { schema, generatedData, selectedTable, setSelectedTable, setGeneratedData } =
     useDataStore();
   const [editInstruction, setEditInstruction] = useState("");
   const [modifying, setModifying] = useState(false);
@@ -53,7 +53,9 @@ export default function DataPreview() {
     }
   };
 
-  const columns = currentData.length > 0 ? Object.keys(currentData[0]) : [];
+  const columns = currentData.length > 0
+    ? Object.keys(currentData[0])
+    : schema?.[currentTable]?.columns.map((column) => column.name) ?? [];
 
   return (
     <div className="space-y-6">
@@ -102,7 +104,16 @@ export default function DataPreview() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {currentData.map((row, idx) => (
+              {currentData.length === 0 ? (
+                <tr>
+                  <td
+                    colSpan={Math.max(columns.length, 1)}
+                    className="px-4 py-8 text-center text-sm text-gray-500"
+                  >
+                    No rows were generated for this table.
+                  </td>
+                </tr>
+              ) : currentData.map((row, idx) => (
                 <tr key={idx} className="hover:bg-gray-50">
                   {columns.map((col) => (
                     <td

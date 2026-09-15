@@ -33,7 +33,19 @@ export async function generateData(params: {
     temperature: params.temperature,
     max_tokens: params.maxTokens,
   });
-  return response.data.data;
+
+  const data = response.data.data as GeneratedData;
+  const hasRows = Object.values(data).some(
+    (tableRows) => Array.isArray(tableRows) && tableRows.length > 0,
+  );
+
+  if (!hasRows) {
+    throw new Error(
+      "The backend returned no rows. Check the backend logs and Gemini configuration.",
+    );
+  }
+
+  return data;
 }
 
 // Modify table data
