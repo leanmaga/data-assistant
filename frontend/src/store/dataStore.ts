@@ -48,8 +48,8 @@ export const useDataStore = create<DataState>((set) => ({
   generatedData: null,
   selectedTable: null,
   temperature: 1.0,
-  maxTokens: 100,
-  numRows: 1000,
+  maxTokens: 4000,
+  numRows: 10,
 
   setSchema: (schema) => set({ schema }),
   setGeneratedData: (data) => set({ generatedData: data }),
@@ -63,7 +63,7 @@ export const useDataStore = create<DataState>((set) => ({
       generatedData: null,
       selectedTable: null,
       temperature: 1.0,
-      maxTokens: 100,
-      numRows: 1000,
+      maxTokens: 4000,
+      numRows: 10,
     }),
 }));
