@@ -33,7 +33,7 @@ export default function LoadingSpinner({
 // Full page loader
 export function FullPageLoader({ text = 'Loading...' }: { text?: string }) {
   return (
-    <div className="fixed inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-white/80 dark:bg-gray-900 backdrop-blur-sm flex items-center justify-center z-50">
       <LoadingSpinner size="lg" text={text} />
     </div>
   )

@@ -65,7 +65,7 @@ export default function SchemaUploader() {
 
   return (
     <div className="mb-8">
-      <label className="block text-sm font-medium text-gray-700 mb-2">
+      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
         Upload DDL Schema
       </label>
 
@@ -107,14 +107,14 @@ export default function SchemaUploader() {
                 alert("Failed to load sample schema.");
               });
             }}
-            className="px-3 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors text-sm"
+            className="px-3 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 dark:bg-blue-950 transition-colors text-sm"
           >
             Load sample
           </button>
         </div>
       </div>
 
-      <div className="mt-2 text-sm text-gray-500">
+      <div className="mt-2 text-sm text-gray-500 dark:text-gray-400">
         Supported formats: SQL, TXT, DDL
       </div>
 
@@ -138,16 +138,16 @@ export default function SchemaUploader() {
 
       {/* Schema Info */}
       {schema && (
-        <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
-          <h3 className="text-sm font-semibold text-gray-900 mb-2">
+        <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-950 rounded-lg border border-gray-200">
+          <h3 className="text-sm font-semibold text-gray-900  dark:text-gray-100 mb-2">
             Schema Tables:
           </h3>
           <ul className="space-y-1">
             {Object.entries(schema).map(([tableName, tableInfo]) => (
               <li key={tableName} className="flex items-center gap-2 text-sm">
                 <FileText className="w-4 h-4 text-gray-400" />
-                <span className="font-medium text-gray-700">{tableName}</span>
-                <span className="text-gray-500">
+                <span className="font-medium text-gray-700 dark:text-gray-300">{tableName}</span>
+                <span className="text-gray-500 dark:text-gray-400">
                   ({tableInfo.columns.length} columns)
                 </span>
               </li>

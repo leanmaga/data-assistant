@@ -46,19 +46,17 @@ export default function DataGenerationPage() {
   };
 
   return (
-    <div className="p-8 max-w-7xl mx-auto">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Data Generation</h1>
+<div className="p-8 max-w-7xl mx-auto">
+  <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8">
+    Data Generation
+  </h1>
 
-      {/* Prompt Section */}
-      <section className="mb-8">
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Prompt
-        </label>
-        <textarea
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-          placeholder="Enter your prompt here..."
-          className="w-full h-32 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+  <section className="mb-8">
+    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+      Prompt
+    </label>
+    <textarea
+      className="w-full h-32 px-4 py-3 border border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
         />
       </section>
 

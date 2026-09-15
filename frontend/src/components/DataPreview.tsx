@@ -62,7 +62,7 @@ export default function DataPreview() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-gray-900">Data Preview</h2>
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Data Preview</h2>
 
         <button
           onClick={handleExport}
@@ -90,27 +90,27 @@ export default function DataPreview() {
       </div>
 
       {/* Data Table */}
-      <div className="border border-gray-200 rounded-lg overflow-hidden">
+      <div className="border border-gray-200  dark:border-gray-700 rounded-lg overflow-hidden">
         <div className="overflow-x-auto max-h-96">
           <table className="w-full">
-            <thead className="bg-gray-50 sticky top-0">
+            <thead className="bg-gray-50 dark:bg-gray-950 sticky top-0">
               <tr>
                 {columns.map((col: string) => (
                   <th
                     key={col}
-                    className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
                   >
                     {col}
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200">
               {currentData.length === 0 ? (
                 <tr>
                   <td
                     colSpan={Math.max(columns.length, 1)}
-                    className="px-4 py-8 text-center text-sm text-gray-500"
+                    className="px-4 py-8 text-center text-sm text-gray-500 dark:text-gray-400"
                   >
                     No rows were generated for this table.
                   </td>
@@ -120,7 +120,7 @@ export default function DataPreview() {
                   {columns.map((col: string) => (
                     <td
                       key={col}
-                      className="px-4 py-3 text-sm text-gray-900 whitespace-nowrap"
+                      className="px-4 py-3 text-sm text-gray-900 dark:text-gray-100 whitespace-nowrap"
                     >
                       {String(row[col])}
                     </td>
@@ -133,8 +133,8 @@ export default function DataPreview() {
       </div>
 
       {/* Quick Edit */}
-      <div className="border-t border-gray-200 pt-6">
-        <h3 className="text-sm font-medium text-gray-700 mb-3">Quick Edit</h3>
+      <div className="border-t border-gray-200  dark:border-gray-700 pt-6">
+        <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Quick Edit</h3>
         <div className="flex gap-2">
           <input
             type="text"
