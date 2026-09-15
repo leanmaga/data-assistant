@@ -90,7 +90,7 @@ export default function SchemaUploader() {
           <select
             value={selectedSample}
             onChange={(e) => setSelectedSample(e.target.value)}
-            className="px-3 py-2 border border-gray-300  dark:border-gray-700 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="px-3 py-2 border border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
             {sampleSchemas.map((sample) => (
               <option key={sample.url} value={sample.url}>
@@ -107,7 +107,7 @@ export default function SchemaUploader() {
                 alert("Failed to load sample schema.");
               });
             }}
-            className="px-3 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 dark:bg-blue-950 transition-colors text-sm"
+            className="px-3 py-2 border border-blue-600 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-950 transition-colors text-sm"
           >
             Load sample
           </button>
@@ -138,7 +138,7 @@ export default function SchemaUploader() {
 
       {/* Schema Info */}
       {schema && (
-        <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-950 rounded-lg border border-gray-200">
+        <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-950 rounded-lg border border-gray-200 dark:border-gray-700">
           <h3 className="text-sm font-semibold text-gray-900  dark:text-gray-100 mb-2">
             Schema Tables:
           </h3>

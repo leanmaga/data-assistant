@@ -90,7 +90,7 @@ export default function DataPreview() {
       </div>
 
       {/* Data Table */}
-      <div className="border border-gray-200  dark:border-gray-700 rounded-lg overflow-hidden">
+      <div className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
         <div className="overflow-x-auto max-h-96">
           <table className="w-full">
             <thead className="bg-gray-50 dark:bg-gray-950 sticky top-0">
@@ -105,7 +105,7 @@ export default function DataPreview() {
                 ))}
               </tr>
             </thead>
-            <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200">
+            <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
               {currentData.length === 0 ? (
                 <tr>
                   <td
@@ -116,7 +116,7 @@ export default function DataPreview() {
                   </td>
                 </tr>
               ) : currentData.map((row: PreviewRow, idx: number) => (
-                <tr key={idx} className="hover:bg-gray-50">
+                <tr key={idx} className="hover:bg-gray-50 dark:hover:bg-gray-800">
                   {columns.map((col: string) => (
                     <td
                       key={col}
@@ -133,7 +133,7 @@ export default function DataPreview() {
       </div>
 
       {/* Quick Edit */}
-      <div className="border-t border-gray-200  dark:border-gray-700 pt-6">
+      <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
         <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Quick Edit</h3>
         <div className="flex gap-2">
           <input
@@ -141,7 +141,7 @@ export default function DataPreview() {
             value={editInstruction}
             onChange={(e) => setEditInstruction(e.target.value)}
             placeholder="Enter quick edit instructions..."
-            className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="flex-1 px-4 py-2 border border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             onKeyDown={(e) => e.key === "Enter" && handleModify()}
           />
           <button

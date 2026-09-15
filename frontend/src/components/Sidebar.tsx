@@ -51,8 +51,8 @@ export default function Sidebar() {
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="hidden md:flex w-64 bg-white dark:bg-gray-900 border-r border-gray-200  dark:border-gray-700 dark:border-gray-800 flex-col transition-colors">
-        <div className="p-6 border-b border-gray-200  dark:border-gray-700 dark:border-gray-800 flex items-center justify-between">
+      <aside className="hidden md:flex w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 flex-col transition-colors">
+        <div className="p-6 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
             Data Assistant
           </h1>
@@ -63,7 +63,7 @@ export default function Sidebar() {
           <NavLinks />
         </nav>
 
-        <div className="p-4 border-t border-gray-200  dark:border-gray-700 dark:border-gray-800">
+        <div className="p-4 border-t border-gray-200 dark:border-gray-800">
           <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
             Powered by Gemini 3.5 Flash Lite
           </p>
@@ -71,7 +71,7 @@ export default function Sidebar() {
       </aside>
 
       {/* Mobile navbar */}
-      <div className="md:hidden bg-white dark:bg-gray-900 border-b border-gray-200  dark:border-gray-700 dark:border-gray-800 transition-colors">
+      <div className="md:hidden bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 transition-colors">
         <div className="flex items-center justify-between px-4 py-3">
           <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100">
             Data Assistant
@@ -90,7 +90,7 @@ export default function Sidebar() {
         </div>
 
         {isOpen && (
-          <nav className="px-4 pb-4 border-t border-gray-200  dark:border-gray-700 dark:border-gray-800 pt-3">
+          <nav className="px-4 pb-4 border-t border-gray-200 dark:border-gray-800 pt-3">
             <NavLinks onNavigate={() => setIsOpen(false)} />
           </nav>
         )}

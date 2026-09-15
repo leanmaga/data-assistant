@@ -25,6 +25,23 @@ body {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
+input,
+textarea,
+select {
+  color: rgb(var(--foreground-rgb));
+  background-color: rgb(var(--background-end-rgb));
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #64748b;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #94a3b8;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
