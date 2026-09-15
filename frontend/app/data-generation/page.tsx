@@ -11,7 +11,14 @@ import { Loader2 } from "lucide-react";
 export default function DataGenerationPage() {
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
-  const { schema, generatedData, setGeneratedData } = useDataStore();
+  const {
+    schema,
+    generatedData,
+    numRows,
+    temperature,
+    maxTokens,
+    setGeneratedData,
+  } = useDataStore();
 
   const handleGenerate = async () => {
     if (!schema) {
@@ -24,14 +31,15 @@ export default function DataGenerationPage() {
       const data = await generateData({
         schema,
         prompt,
-        numRows: 1000,
-        temperature: 1.0,
-        maxTokens: 100,
+        numRows,
+        temperature,
+        maxTokens,
       });
       setGeneratedData(data);
     } catch (error) {
       console.error("Generation failed:", error);
-      alert("Failed to generate data. Please try again.");
+      const message = error instanceof Error ? error.message : "Unknown error";
+      alert(`Failed to generate data: ${message}`);
     } finally {
       setLoading(false);
     }

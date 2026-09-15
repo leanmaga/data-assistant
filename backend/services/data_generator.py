@@ -69,7 +69,7 @@ Generate ONLY the JSON output, no additional text."""
             response_text = await generate_with_gemini(
                 prompt=prompt,
                 temperature=temperature,
-                max_tokens=max_tokens * 100,  # Adjust for data size
+                max_tokens=max_tokens,
                 response_format="application/json"
             )
             
@@ -80,15 +80,16 @@ Generate ONLY the JSON output, no additional text."""
                 generated_tables[table_name] = result['data']
                 print(f"✅ Generated {len(result['data'])} rows for table '{table_name}'")
             else:
-                print(f"⚠️ Invalid response format for table '{table_name}'")
-                generated_tables[table_name] = []
+                raise RuntimeError(
+                    f"Gemini returned an invalid JSON shape for table '{table_name}'"
+                )
                 
         except json.JSONDecodeError as e:
-            print(f"❌ JSON parse error for table '{table_name}': {str(e)}")
-            generated_tables[table_name] = []
+            raise RuntimeError(
+                f"Gemini returned truncated or invalid JSON for table '{table_name}': {str(e)}"
+            ) from e
         except Exception as e:
-            print(f"❌ Error generating data for '{table_name}': {str(e)}")
-            generated_tables[table_name] = []
+            raise RuntimeError(f"Error generating data for '{table_name}': {str(e)}") from e
     
     return generated_tables
 
