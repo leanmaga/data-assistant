@@ -1,9 +1,6 @@
 # Dependencies
 node_modules/
 frontend/node_modules/
-backend/__pycache__/
-backend/*.pyc
-backend/venv/
 backend/env/
 *.egg-info/
 
@@ -73,6 +70,12 @@ sdist/
 var/
 wheels/
 pip-wheel-metadata/
+
+# Frontend source modules (not Python build artifacts)
+!frontend/src/lib/
+!frontend/src/lib/*.ts
+!frontend/src/lib/*.tsx
+
 *.manifest
 *.spec
 
