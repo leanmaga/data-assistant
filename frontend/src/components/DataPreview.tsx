@@ -79,7 +79,7 @@ export default function DataPreview() {
         <select
           value={currentTable}
           onChange={(e) => setSelectedTable(e.target.value)}
-          className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         >
           {tables.map((table) => (
             <option key={table} value={table}>
@@ -141,7 +141,7 @@ export default function DataPreview() {
             value={editInstruction}
             onChange={(e) => setEditInstruction(e.target.value)}
             placeholder="Enter quick edit instructions..."
-            className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             onKeyDown={(e) => e.key === "Enter" && handleModify()}
           />
           <button

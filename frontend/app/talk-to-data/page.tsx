@@ -17,7 +17,7 @@ export default function TalkToDataPage() {
           Coming in Phase 2 & 3
         </h2>
 
-        <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+        <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
           Soon you'll be able to query your generated data using natural
           language, generate SQL queries with AI, and visualize insights with
           interactive charts.
@@ -29,7 +29,7 @@ export default function TalkToDataPage() {
             <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">
               Natural Language Queries
             </h3>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 dark:text-gray-300">
               Ask questions in plain English and get instant answers from your
               data
             </p>
@@ -40,7 +40,7 @@ export default function TalkToDataPage() {
             <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">
               Smart Visualizations
             </h3>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 dark:text-gray-300">
               Automatically generate charts and graphs from your queries
             </p>
           </div>
@@ -48,7 +48,7 @@ export default function TalkToDataPage() {
           <div className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-sm">
             <div className="text-3xl mb-3">⚡</div>
             <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">SQL Generation</h3>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 dark:text-gray-300">
               AI-powered SQL query generation with explanation
             </p>
           </div>

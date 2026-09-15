@@ -90,7 +90,7 @@ export default function SchemaUploader() {
           <select
             value={selectedSample}
             onChange={(e) => setSelectedSample(e.target.value)}
-            className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="px-3 py-2 border border-gray-300  dark:border-gray-700 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
             {sampleSchemas.map((sample) => (
               <option key={sample.url} value={sample.url}>
