@@ -5,6 +5,8 @@ import { useDataStore } from "@/store/dataStore";
 import { Download, Send } from "lucide-react";
 import { exportDataAsZip, modifyTableData } from "@/lib/api";
 
+type PreviewRow = Record<string, unknown>;
+
 export default function DataPreview() {
   const { schema, generatedData, selectedTable, setSelectedTable, setGeneratedData } =
     useDataStore();
@@ -16,7 +18,7 @@ export default function DataPreview() {
 
   const tables = Object.keys(generatedData);
   const currentTable = selectedTable || tables[0];
-  const currentData = generatedData[currentTable] || [];
+  const currentData: PreviewRow[] = generatedData[currentTable] || [];
 
   const handleModify = async () => {
     if (!editInstruction.trim()) return;
@@ -53,9 +55,9 @@ export default function DataPreview() {
     }
   };
 
-  const columns = currentData.length > 0
+  const columns: string[] = currentData.length > 0
     ? Object.keys(currentData[0])
-    : schema?.[currentTable]?.columns.map((column) => column.name) ?? [];
+    : schema?.[currentTable]?.columns.map((column: { name: string }) => column.name) ?? [];
 
   return (
     <div className="space-y-6">
@@ -93,7 +95,7 @@ export default function DataPreview() {
           <table className="w-full">
             <thead className="bg-gray-50 sticky top-0">
               <tr>
-                {columns.map((col) => (
+                {columns.map((col: string) => (
                   <th
                     key={col}
                     className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -113,9 +115,9 @@ export default function DataPreview() {
                     No rows were generated for this table.
                   </td>
                 </tr>
-              ) : currentData.map((row, idx) => (
+              ) : currentData.map((row: PreviewRow, idx: number) => (
                 <tr key={idx} className="hover:bg-gray-50">
-                  {columns.map((col) => (
+                  {columns.map((col: string) => (
                     <td
                       key={col}
                       className="px-4 py-3 text-sm text-gray-900 whitespace-nowrap"
